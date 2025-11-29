@@ -1,3 +1,3 @@
 <?php
-echo "my api push key"
-?>
+
+echo "DARAJA API BY UMESKIA SOFTWARES";
