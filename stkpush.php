@@ -3,17 +3,17 @@
 include 'accessToken.php';
 date_default_timezone_set('Africa/Nairobi');
 $processrequestUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-$callbackurl = 'https://1c95-105-161-14-223.ngrok-free.app/MPEsa-Daraja-Api/callback.php';
+$callbackurl = 'https://smallg.co.ke/darajaapp/callback.php';
 $passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
 $BusinessShortCode = '174379';
 $Timestamp = date('YmdHis');
 // ENCRIPT  DATA TO GET PASSWORD
 $Password = base64_encode($BusinessShortCode . $passkey . $Timestamp);
-$phone = '0112169111';//phone number to receive the stk push
+$phone = '254112169111';//phone number to receive the stk push
 $money = '1';
 $PartyA = $phone;
 $PartyB = '254708374149';
-$AccountReference = 'UMESKIA SOFTWARES';
+$AccountReference = 'KAMJORO ENTERPRISES LIMITED';
 $TransactionDesc = 'stkpush test';
 $Amount = $money;
 $stkpushheader = ['Content-Type:application/json', 'Authorization:Bearer ' . $access_token];
@@ -41,10 +41,3 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
 echo $curl_response = curl_exec($curl);
-//ECHO  RESPONSE
-$data = json_decode($curl_response);
-$CheckoutRequestID = $data->CheckoutRequestID;
-$ResponseCode = $data->ResponseCode;
-if ($ResponseCode == "0") {
-  echo "The CheckoutRequestID for this transaction is : " . $CheckoutRequestID;
-}
